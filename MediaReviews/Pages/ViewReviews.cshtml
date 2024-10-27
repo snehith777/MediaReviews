@@ -4,16 +4,16 @@
     ViewData["Title"] = "View Reviews";
 }
 
-<h3>Reviews</h3>
+<div class="d-flex justify-content-between align-items-center">
+    <h2>Reviews</h2>
+    <a asp-page="/AddReview" class="btn btn-success btn-sm">Add New Review</a>
+</div>
 
 <form method="get">
     <div class="form-group">
         <input type="text" name="searchString" value="@Model.SearchString" placeholder="Search reviews..." />
-        <button type="submit">Search</button>
-    </div>
-    
-    <div class="form-group">
-        <select name="category" onchange="this.form.submit();">
+        <button type="submit" >Search</button>
+        <select name="category" class="ms-5" onchange="this.form.submit();">
             <option value="">All Categories</option>
             <option value="Movie" selected="@(Model.CurrentCategory == "Movie")">Movie</option>
             <option value="Book" selected="@(Model.CurrentCategory == "Book")">Book</option>
@@ -21,13 +21,22 @@
         </select>
     </div>
     
+   @*  <div class="form-group">
+        <select name="category" onchange="this.form.submit();">
+            <option value="">All Categories</option>
+            <option value="Movie" selected="@(Model.CurrentCategory == "Movie")">Movie</option>
+            <option value="Book" selected="@(Model.CurrentCategory == "Book")">Book</option>
+            <option value="Game" selected="@(Model.CurrentCategory == "Game")">Game</option>
+        </select>
+    </div> *@
+    
   
-    <div class="form-group">
-        <a asp-page="/ViewReviews" asp-route-sortOrder="title">Sort by Title</a> |
-        <a asp-page="/ViewReviews" asp-route-sortOrder="rating_asc">Sort by Rating Ascending</a> |
-        <a asp-page="/ViewReviews" asp-route-sortOrder="rating_desc">Sort by Rating Descending</a> |
-        <a asp-page="/ViewReviews" asp-route-sortOrder="date_asc">Sort by Date Ascending</a> |
-        <a asp-page="/ViewReviews" asp-route-sortOrder="date_desc">Sort by Date Descending</a>
+    <div class="form-group" >
+        <a asp-page="/ViewReviews" class="btn btn-success btn-sm" asp-route-sortOrder="title">Sort by Title</a> 
+        <a asp-page="/ViewReviews" class="btn btn-success btn-sm" asp-route-sortOrder="rating_asc">Sort by Rating Ascending</a> 
+        <a asp-page="/ViewReviews" class="btn btn-success btn-sm" asp-route-sortOrder="rating_desc">Sort by Rating Descending</a> 
+        <a asp-page="/ViewReviews" class="btn btn-success btn-sm" asp-route-sortOrder="date_asc">Sort by Date Ascending</a> 
+        <a asp-page="/ViewReviews" class="btn btn-success btn-sm" asp-route-sortOrder="date_desc">Sort by Date Descending</a>
     </div>
 
 </form>

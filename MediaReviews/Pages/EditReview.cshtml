@@ -15,7 +15,7 @@
     <div class="form-group">
         <label asp-for="Review.Category"></label>
         <select asp-for="Review.Category" class="form-control" required>
-            <option value="">Select a category</option> <!-- Optional: default option -->
+            <option value="">Select a category</option>
             @foreach (var category in Model.Categories)
             {
                 <option value="@category">@category</option>
@@ -35,6 +35,8 @@
         <input asp-for="Review.DateReviewed" type="date" class="form-control" required />
     </div>
     <button type="submit" class="btn btn-primary">Update Review</button>
+    <a asp-page="/ViewReviews" class="btn btn-secondary">Cancel</a>
+
 </form>
 
 
