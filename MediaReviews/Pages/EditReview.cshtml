@@ -1,0 +1,40 @@
+﻿@page
+@model EditReviewModel
+@{
+    ViewData["Title"] = "Edit Review";
+}
+
+<h2>Edit Review</h2>
+
+<form method="post">
+    <input type="hidden" asp-for="Review.ReviewID" />
+    <div class="form-group">
+        <label asp-for="Review.Title"></label>
+        <input asp-for="Review.Title" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label asp-for="Review.Category"></label>
+        <select asp-for="Review.Category" class="form-control" required>
+            <option value="">Select a category</option> <!-- Optional: default option -->
+            @foreach (var category in Model.Categories)
+            {
+                <option value="@category">@category</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <label asp-for="Review.ReviewText"></label>
+        <textarea asp-for="Review.ReviewText" class="form-control" required></textarea>
+    </div>
+    <div class="form-group">
+        <label asp-for="Review.Rating"></label>
+        <input asp-for="Review.Rating" type="number" min="1" max="5" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label asp-for="Review.DateReviewed"></label>
+        <input asp-for="Review.DateReviewed" type="date" class="form-control" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Update Review</button>
+</form>
+
+

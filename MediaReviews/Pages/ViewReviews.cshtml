@@ -1,0 +1,68 @@
+﻿@page
+@model ViewReviewsModel
+@{
+    ViewData["Title"] = "View Reviews";
+}
+
+<h3>Reviews</h3>
+
+<form method="get">
+    <div class="form-group">
+        <input type="text" name="searchString" value="@Model.SearchString" placeholder="Search reviews..." />
+        <button type="submit">Search</button>
+    </div>
+    
+    <div class="form-group">
+        <select name="category" onchange="this.form.submit();">
+            <option value="">All Categories</option>
+            <option value="Movie" selected="@(Model.CurrentCategory == "Movie")">Movie</option>
+            <option value="Book" selected="@(Model.CurrentCategory == "Book")">Book</option>
+            <option value="Game" selected="@(Model.CurrentCategory == "Game")">Game</option>
+        </select>
+    </div>
+    
+    <div class="form-group">
+        <a asp-page="/ViewReviews" asp-route-sortOrder="title">Sort by Title</a> |
+        <a asp-page="/ViewReviews" asp-route-sortOrder="rating_asc">Sort by Rating Ascending</a> |
+        <a asp-page="/ViewReviews" asp-route-sortOrder="rating_desc">Sort by Rating Descending</a>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Category</th>
+            <th>Rating</th>
+            <th>Date Reviewed</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var review in Model.Reviews)
+        {
+            <tr>
+                <td>@review.Title</td>
+                <td>@review.Category</td>
+                <td>@review.Rating</td>
+                <td>@review.DateReviewed.ToString("yyyy-MM-dd")</td>
+                <td>
+                    <a asp-page="/EditReview" asp-route-id="@review.ReviewID">Edit</a>
+                    <a asp-page="/DeleteReview" asp-route-id="@review.ReviewID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Pagination Controls -->
+<div>
+    @if (ViewData["TotalPages"] != null && ViewData["TotalPages"] is int totalPages)
+    {
+        for (int i = 1; i <= totalPages; i++)
+        {
+            <a asp-page="/ViewReviews" asp-route-pageIndex="@i">@i</a>
+            @if (i < totalPages) { <span>|</span> }
+        }
+    }
+</div>

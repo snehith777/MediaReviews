@@ -1,0 +1,14 @@
+﻿@page
+@model DeleteReviewModel
+@{
+    ViewData["Title"] = "Delete Review";
+}
+
+<h2>Delete Review</h2>
+<h3>Are you sure you want to delete the review for "@Model.Review.Title"?</h3>
+
+<form method="post">
+    <input type="hidden" asp-for="Review.ReviewID" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a href="/ViewReviews" class="btn btn-secondary">Cancel</a>
+</form>
