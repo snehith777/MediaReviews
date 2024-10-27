@@ -40,12 +40,14 @@ public class ViewReviewsModel : PageModel
             reviewsQuery = reviewsQuery.Where(r => r.Title.Contains(searchString) || r.ReviewText.Contains(searchString));
         }
 
-        // Sort by rating or title
+        // Sort
         reviewsQuery = sortOrder switch
         {
             "rating_desc" => reviewsQuery.OrderByDescending(r => r.Rating),
             "rating_asc" => reviewsQuery.OrderBy(r => r.Rating),
-            _ => reviewsQuery.OrderBy(r => r.Title),
+            "date_desc" => reviewsQuery.OrderByDescending(r => r.DateReviewed),
+            "date_asc" => reviewsQuery.OrderBy(r => r.DateReviewed),
+            _ => reviewsQuery.OrderBy(r => r.DateReviewed),
         };
 
         // Pagination

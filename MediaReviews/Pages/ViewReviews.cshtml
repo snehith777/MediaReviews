@@ -21,11 +21,15 @@
         </select>
     </div>
     
+  
     <div class="form-group">
         <a asp-page="/ViewReviews" asp-route-sortOrder="title">Sort by Title</a> |
         <a asp-page="/ViewReviews" asp-route-sortOrder="rating_asc">Sort by Rating Ascending</a> |
-        <a asp-page="/ViewReviews" asp-route-sortOrder="rating_desc">Sort by Rating Descending</a>
+        <a asp-page="/ViewReviews" asp-route-sortOrder="rating_desc">Sort by Rating Descending</a> |
+        <a asp-page="/ViewReviews" asp-route-sortOrder="date_asc">Sort by Date Ascending</a> |
+        <a asp-page="/ViewReviews" asp-route-sortOrder="date_desc">Sort by Date Descending</a>
     </div>
+
 </form>
 
 <table class="table">
